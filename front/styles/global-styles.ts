@@ -1,6 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { reset } from 'styled-reset';
-import { media } from './theme';
+import { createGlobalStyle, css } from "styled-components";
+import { reset } from "styled-reset";
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -16,39 +15,16 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-text-size-adjust: none;
         font-family: -apple-system,BlinkMacSystemFont,helvetica,Apple SD Gothic Neo,sans-serif;       
         font-display: fallback;
-        ${media.tablet}{
-            font-size: 10px;
-        }
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-    button {
-        background: none;
-        padding: 0;
-        border: none;
-        cursor: pointer;
-        &:disabled {
-            cursor: default;
-            fill: #f2f3f4;
+    ${({ theme }) => {
+      return css`
+        body {
+          font-family: ${theme.fonts.family.base};
+          font-weight: ${theme.fonts.weight.normal};
+          font-size: ${theme.fonts.size.base};
         }
-    }
-
-    .pc-tablet-only {
-        display: block;
-        ${media.mobile} {
-            display: none;
-        }
-    }
-    .tablet-mobile-only{
-        display: none;
-        ${media.tablet}{
-            display:block;
-        }
-    }
-    .mobile-only {
-        display: none;
-        ${media.mobile} {
-            display: block;
-        }
-    }
+      `;
+    }}
 `;
