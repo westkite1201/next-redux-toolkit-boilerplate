@@ -1,19 +1,69 @@
-import "styled-components";
+import 'styled-components';
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface DefaultTheme {
-    color: {
-      purple: "#8661de";
-      blue: "#00bac7";
-      gray: "#f6f6f6";
-      green: "#07b495";
-      lightGreen: "#99ecdd";
-      darkGray: "#54595d";
+    colors: {
+      purple: string;
+      blue: string;
+      gray: string;
+      green: string;
+      lightGreen: string;
+      darkGray: string;
+      primary: string;
+      secondary: string;
+      tertiary: string;
     };
-    boxShadow: {
-      normal: "0 3px 8px 0 rgb(0 0 0 / 10%)";
-      purple: "0 3px 8px 0 #d6c9ff";
-      blue: "0 3px 8px 0 #b3e2e6";
+
+    margins: {
+      sm: string;
+      base: string;
+      lg: string;
+      xl: string;
+    };
+
+    paddings: {
+      sm: string;
+      base: string;
+      lg: string;
+      xl: string;
+    };
+
+    fonts: {
+      family: {
+        base: string;
+        title: string;
+      };
+      size: {
+        sm: string;
+        base: string;
+        lg: string;
+        xl: string;
+        title: string;
+      };
+      weight: {
+        light: number;
+        normal: number;
+        bold: number;
+      };
+    };
+
+    size: {
+      mobile: string;
+      tablet: string;
+      desktop: string;
+    };
+
+    // 미디어 쿼리의 중복 코드를 줄이기위해 정의된 변수입니다
+    device: {
+      mobile: string;
+      tablet: string;
+      desktopL: string;
+    };
+
+    transitionTime: {
+      primary: string;
+      secondary: string;
+      tertiary: string;
     };
   }
 }

@@ -12,6 +12,7 @@ const St = {
     display: flex;
     position: relative;
     min-width: 500px;
+    background: ${(props) => props.theme.colors.primary};
   `,
 
   LayoutWrapper: styled.div`

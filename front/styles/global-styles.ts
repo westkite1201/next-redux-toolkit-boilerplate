@@ -1,5 +1,5 @@
-import { createGlobalStyle, css } from "styled-components";
-import { reset } from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import { reset } from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -18,13 +18,14 @@ export const GlobalStyle = createGlobalStyle`
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-    ${({ theme }) => {
-      return css`
-        body {
-          font-family: ${theme.fonts.family.base};
-          font-weight: ${theme.fonts.weight.normal};
-          font-size: ${theme.fonts.size.base};
-        }
-      `;
-    }}
+ 
+    body {
+        font-family: ${(props) => props.theme.fonts.family.base};
+        font-weight: ${(props) => props.theme.fonts.weight.normal};
+        font-size: ${(props) => props.theme.fonts.size.base};
+        background: ${(props) => props.theme.colors.primary};  
+    }
+     
+
+   
 `;

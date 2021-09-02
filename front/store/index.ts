@@ -44,15 +44,3 @@ export const store = configureStore({
 const makeStore = () => store;
 
 export const wrapper = createWrapper(makeStore);
-
-// const initStore = () => {
-//   const store = configureStore({
-//     reducer,
-//     devTools: true
-//   })
-//   //initialRootState = store.getState()
-//   return store
-// }
-
-// export type AppStore = ReturnType<typeof initStore>
-// export const wrapper = createWrapper(initStore)
