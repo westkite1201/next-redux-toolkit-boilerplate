@@ -5,6 +5,7 @@ export const useDarkMode = (): [string, () => void] => {
   const localTheme = !isServer && window.localStorage.getItem('theme');
   const initialState = localTheme || 'light';
   const [theme, setTheme] = useState(initialState);
+
   const toggleTheme = () => {
     if (theme === 'light') {
       window.localStorage.setItem('theme', 'dark');

@@ -27,10 +27,9 @@ const Layout = ({ children }: Props) => {
     <>
       <Head>
         <title>Your title</title>
-        <link rel="shortcut icon" href="/images/hangang.ico" />
-        <meta property="og:title" content="One Drop Ink" key="title" />
+        <link rel="shortcut icon" href="/images/your.ico" />
+        <meta property="og:title" content="your title" key="title" />
       </Head>
-      <div id="modal-root" />
       <St.AllWrapper>
         <St.LayoutWrapper>{children}</St.LayoutWrapper>
       </St.AllWrapper>

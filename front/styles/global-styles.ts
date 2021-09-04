@@ -24,6 +24,7 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: ${(props) => props.theme.fonts.weight.normal};
         font-size: ${(props) => props.theme.fonts.size.base};
         background: ${(props) => props.theme.colors.primary};  
+        transition: 0.4s background;
     }
      
 

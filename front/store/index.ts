@@ -4,12 +4,11 @@ import {
   TypedUseSelectorHook,
   useSelector as useReduxSelector,
 } from 'react-redux';
-import board from './board';
-import common from './common';
+import data from './data';
 
 const rootReducer = combineReducers({
-  common: common.reducer,
-  board: board.reducer,
+  data: data.reducer,
+  /* store reducer를 위와 같은 형식처럼 넣어주세요.*/
 });
 
 //* 스토어의 타입

@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
+import { wrapper } from 'store';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'styles/global-styles';
-import { FiSun, FiMoon } from 'react-icons/fi';
-import { wrapper } from 'store';
 import Layout from 'components/base/Layout';
+import Toggle from 'components/common/Toggle';
 import { darkTheme, lightTheme } from 'styles/theme';
-import { Toggler } from 'components/common/Toggler';
+import { useDarkMode } from 'hooks/useDarkMode';
 
 const app = ({ Component, pageProps }: AppProps) => {
-  const [theme, setTheme] = useState('light');
-  const toggleTheme = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  };
-  const icon = theme === 'light' ? <FiMoon size={26} /> : <FiSun size={26} />;
+  const [theme, toggleTheme] = useDarkMode();
+  const [isMounted, setIsMounted] = React.useState(false);
 
-  return (
-    <>
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <GlobalStyle />
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-        <Toggler onClick={() => toggleTheme()}>{icon}</Toggler>
-
-        <Layout>
-          <Component {...pageProps} title="" />
-        </Layout>
-        <div id="root-modal" />
-      </ThemeProvider>
-    </>
+  const body = (
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyle />
+      <Toggle themeMode={theme} toggleTheme={toggleTheme} />
+      <Layout>
+        <Component {...pageProps} title="" />
+      </Layout>
+    </ThemeProvider>
   );
+
+  // prevents ssr flash for mismatched dark mode
+  if (!isMounted) {
+    return <div style={{ visibility: 'hidden' }}>{body}</div>;
+  }
+
+  return <>{body}</>;
 };
 
 export default wrapper.withRedux(app);

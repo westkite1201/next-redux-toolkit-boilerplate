@@ -12,6 +12,9 @@ declare module 'styled-components' {
       primary: string;
       secondary: string;
       tertiary: string;
+      divider: string;
+      themeIcon: string;
+      fontColor: string;
     };
 
     margins: {

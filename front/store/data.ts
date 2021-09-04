@@ -1,12 +1,12 @@
 /* Filter + image 통합 test */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getDatas } from 'lib/api/board';
-import { BoardState } from 'types';
+import { getDatas } from 'lib/api/data';
+import { DataState, GetDatasRes } from 'types';
 
 export const getDatasThunk = createAsyncThunk(
-  'board/getPostsListMatchTagThunk',
+  'board/getDatas',
   // eslint-disable-next-line consistent-return
-  async (params, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const response = await getDatas();
       const datas = response.data;
@@ -17,7 +17,7 @@ export const getDatasThunk = createAsyncThunk(
   },
 );
 
-const initialState: BoardState = {
+const initialState: DataState = {
   datasNum: 0,
   isDatasLoading: false,
   isDatasDone: false,
@@ -25,7 +25,7 @@ const initialState: BoardState = {
   datas: [],
 };
 
-const board = createSlice({
+const data = createSlice({
   name: 'board',
   initialState,
   reducers: {
@@ -43,10 +43,10 @@ const board = createSlice({
 
     builder.addCase(
       getDatasThunk.fulfilled,
-      (state, action: PayloadAction<any[]>) => {
+      (state, action: PayloadAction<GetDatasRes>) => {
         state.isDatasDone = true;
         state.isDatasError = null;
-        state.datas = action.payload;
+        state.datas = action.payload.cardList;
       },
     );
 
@@ -57,6 +57,6 @@ const board = createSlice({
     });
   },
 });
-export const boardActions = { ...board.actions };
+export const dataActions = { ...data.actions };
 
-export default board;
+export default data;

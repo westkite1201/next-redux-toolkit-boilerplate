@@ -5,7 +5,7 @@ export interface CommonState {
   validateMode: boolean;
 }
 
-export type BoardState = {
+export type DataState = {
   datasNum: number;
   isDatasLoading: boolean;
   isDatasDone: boolean;
